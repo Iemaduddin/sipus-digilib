@@ -9,15 +9,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\User;
+
 class HomeController extends Controller
 {
-    public function landingPage() {
+    public function landingPage()
+    {
         $buku = Book::all()->count();
-        $user = Role::find(1)->users()->count();
-        $staf = Role::find(2)->users()->count();
-        return view('index', compact('user', 'buku','staf'));
+        $user = Role::find(2)->users()->count();
+        $staf = Role::find(3)->users()->count();
+        return view('index', compact('user', 'buku', 'staf'));
     }
-    public function index() {
+    public function index()
+    {
         $books = Auth()->user()->borrow;
 
         return view('home', compact('books'));
